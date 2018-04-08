@@ -1,0 +1,63 @@
+0=user
+1=editer
+2=admin
+
+
+<!-- SELECTMEMBER -->
+                <!--  -->
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            User
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>NumberRoom</th>
+                                            <th>Title Name</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    include("../../../data/config.php");
+                                    $sql = "SELECT * FROM `user` ORDER BY `user`.`STATUS` DESC";
+                                    $result = $conn->query($sql);
+                                    
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                        echo"<tr>
+                                        <td>".$row['ID']."</td>
+                                        <td>".$row['ROOMNUM']."</td>
+                                        <td>".$row['NAME_TITLE']."</td>
+                                        <td>".$row['NAME']."</td>
+                                        <td>".$row['LASTNAME']."</td>
+                                        <td>".$row['USERNAME']."</td>
+                                        <td>".$row['PASSWORD']."</td>
+                                        <td>".$row['STATUS']."</td>
+                                        </tr>";
+                                        }
+                                    } else {
+                                        echo "0 results";
+                                    }
+                                    $conn->close();
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- END SELECTMEMBER -->
